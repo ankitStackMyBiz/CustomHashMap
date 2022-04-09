@@ -1,6 +1,7 @@
 package com.example.helloworld;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class HashMapRunnerClass {
@@ -9,62 +10,84 @@ public class HashMapRunnerClass {
     public static void main(String[] args) {
         AnkitHashMap<Integer, String> ankitHashMap = new AnkitHashMap<>();
 
-
-        ankitHashMap.put(null, "Ankit");
-        //System.out.println(ankitHashMap);
-
-
-//        HashMap<String,String> hashMap = new HashMap<>(6);
-//
-//        hashMap.put("Ankit","Male");
-//        hashMap.put("Rakesh","Male");
-//        hashMap.put("Amit","Male");
-//
-//        for(Map.Entry<String,String> entry : hashMap.entrySet()){
-//            if(entry != null) {
-//                System.out.println(entry.getKey() + " : " + entry.getValue());
-//            }
-//        }
-
-
-
-
-        ankitHashMap.put(3, "Ankit");
+        ankitHashMap.put(8, "Ankit");
         ankitHashMap.put(2, "Rakesh");
-        ankitHashMap.put(null, "Rakesh");
+        ankitHashMap.put(4, "Jji");
         ankitHashMap.put(null, "Ritesh");
 
-        System.out.println(ankitHashMap);
 
-        ankitHashMap.remove(1);
-        System.out.println(ankitHashMap);
-        ankitHashMap.remove(1);
+        System.out.println("\nIterating through hashmap using forEach :::::::::\n");
+        //iterate through hashmap using foreach loop
+        for (Map.Entry<Integer, String> entry : ankitHashMap.entrySet()) {
+            System.out.println(entry);
+        }
 
-        System.out.println(ankitHashMap.containsKey(2));
-        System.out.println(ankitHashMap.containsValue("Rakesh"));
-        System.out.println(ankitHashMap.containsValue("Mukesh"));
-        System.out.println(ankitHashMap.containsValue(null));
-        System.out.println(ankitHashMap.get(null));
-        System.out.println(ankitHashMap.get(2));
+        //key
+        for (Integer key : ankitHashMap.keySet()) {
+            System.out.println(key);
+        }
 
-//        AnkitHashMap<String, String> myHashMap = new AnkitHashMap<String, String>();
-//        myHashMap.put("A", "B");
-//        myHashMap.put("E", "F");
-//        myHashMap.put("H", "P");
-//        myHashMap.put("P", "2");
-//        myHashMap.put("1",  "G");
-//        myHashMap.put("2", "6");
-//        myHashMap.put("3", "2");
-//        myHashMap.put("4", "4");
-//        myHashMap.put("1",  "H");
+        //values
+        for (String value : ankitHashMap.values()) {
+            System.out.println(value);
+        }
 
 
-//    System.out.println(myHashMap);
-////    System.out.println(myHashMap.get("A"));
-////    System.out.println(myHashMap.remove("A"));
-//        myHashMap.remove("2");
-//        System.out.println(myHashMap.get(3));
-//    }
+        //***************************
+
+        //iterate through hashmap using iterator
+
+        System.out.println("\nIterating through hashmap using iterator :::::::::\n");
+        //entrySet
+        Iterator<Map.Entry<Integer,String>> entryIterator = ankitHashMap.entrySet().iterator();
+
+        while (entryIterator.hasNext()){
+            System.out.println(entryIterator.next());
+        }
+
+        //keySet
+        Iterator<Integer> keySet =  ankitHashMap.keySet().iterator();
+        while (keySet.hasNext()){
+            System.out.println(keySet.next());
+        }
+
+        //values
+        Iterator<String> valueSet = ankitHashMap.values().iterator();
+        while (valueSet.hasNext()){
+            System.out.println(valueSet.next());
+        }
+
+        //***************************
+
+        //iterate through forEach and lambda
+        System.out.println("\nIterating through hashmap using forEach and lambda :::::::::\n");
+
+        //entry set
+        ankitHashMap.entrySet().forEach(entry -> {
+            System.out.println(entry);
+        });
+
+        //keySet
+
+        ankitHashMap.keySet().forEach(key ->{
+            System.out.println(key);
+        });
+
+        //values
+        ankitHashMap.values().forEach(value ->{
+            System.out.println(value);
+        });
+
+
+        //***************************
+
+        //iterate through forEach and lambda
+        System.out.println("\nIterating through hashmap using stream :::::::::\n");
+
+        ankitHashMap.entrySet().stream().forEach(entry -> {
+            System.out.println(entry.getKey()+":"+entry.getValue());
+        });
+
 
     }
 }

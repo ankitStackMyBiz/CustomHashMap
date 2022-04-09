@@ -1,6 +1,8 @@
 package com.example.helloworld;
 
-public class EntryClass<K,V> {
+import java.util.Map;
+
+public class EntryClass<K,V> implements Map.Entry {
 
     private K key;
     private V value;
@@ -24,9 +26,15 @@ public class EntryClass<K,V> {
         return value;
     }
 
-    public void setValue(V value) {
-        this.value = value;
+    @Override
+    public Object setValue(Object value) {
+        this.value = (V) value;
+        return null;
     }
+
+//    public void setValue(V value) {
+//        this.value = value;
+//    }
 
     public EntryClass<K, V> getNext() {
         return next;
@@ -34,5 +42,14 @@ public class EntryClass<K,V> {
 
     public void setNext(EntryClass<K, V> next) {
         this.next = next;
+    }
+
+    @Override
+    public String toString() {
+        return "EntryClass{" +
+                "key=" + key +
+                ", value=" + value +
+                ", next=" + next +
+                '}';
     }
 }
